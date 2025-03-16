@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert UTC to EST time easily with our free online converter. Accurate, real-time UTC to EST time conversion for scheduling, travel, and global communication.">
+    <meta name="keywords" content="UTC to EST, time conversion, time zone converter, UTC EST difference, convert UTC to Eastern Time">
+    <title>UTC to EST Converter | Easy Time Zone Conversion Tool</title>
+    <!-- 网站图标 - 使用多种格式和路径确保兼容性 -->
+    <link rel="icon" href="ico.svg" type="image/svg+xml">
+    <link rel="icon" href="/ico.svg" type="image/svg+xml">
+    <link rel="icon" href="./ico.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="logo">
+                    <h1>UTC to EST</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#converter">Converter</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Convert UTC to EST Time Instantly</h1>
+                    <p>Seamlessly convert Coordinated Universal Time (UTC) to Eastern Standard Time (EST) with our accurate, easy-to-use converter.</p>
+                    <a href="#converter" class="btn primary-btn">Convert Now</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="converter" class="converter-section">
+            <div class="container">
+                <h2>UTC to EST Converter</h2>
+                <p>Easily convert UTC time to Eastern Standard Time (EST) with our simple tool.</p>
+                
+                <div class="converter-widget">
+                    <div class="direction-toggle">
+                        <button id="toggle-direction" class="btn secondary-btn">
+                            <span id="direction-text">Switch to EST → UTC</span>
+                            <span class="toggle-icon">🔄</span>
+                        </button>
+                    </div>
+                    <div class="time-input">
+                        <div class="input-group">
+                            <label for="utc-date" id="source-date-label">UTC Date:</label>
+                            <input type="date" id="utc-date">
+                            <div class="error-message" id="date-error"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="utc-time" id="source-time-label">UTC Time:</label>
+                            <input type="time" id="utc-time" readonly autocomplete="off">
+                            <div class="error-message" id="time-error"></div>
+                        </div>
+                        <button id="convert-btn" class="btn primary-btn">Convert <span id="convert-direction">UTC to EST</span></button>
+                    </div>
+                    
+                    <!-- 实时预览区域 -->
+                    <div class="preview-container">
+                        <div class="preview-label">Preview:</div>
+                        <div class="preview-result" id="preview-result">Select date and time to see preview</div>
+                    </div>
+                    
+                    <div class="result">
+                        <h3>Result:</h3>
+                        <div class="time-display">
+                            <div class="time-card" id="source-card">
+                                <h4 id="source-label">UTC Time</h4>
+                                <div class="time-value-container">
+                                    <p id="utc-display">--:-- --</p>
+                                    <button class="copy-btn" id="copy-utc-btn" title="Copy to clipboard">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="arrow" id="conversion-arrow">→</div>
+                            <div class="time-card highlight" id="target-card">
+                                <h4 id="target-label">EST Time</h4>
+                                <div class="time-value-container">
+                                    <p id="est-display">--:-- --</p>
+                                    <button class="copy-btn" id="copy-est-btn" title="Copy to clipboard">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="time-difference">Time Difference: <span id="time-diff">UTC is 5 hours ahead of EST</span></p>
+                    </div>
+                </div>
+                
+                <div class="current-time">
+                    <h3>Current Time:</h3>
+                    <div class="time-cards">
+                        <div class="time-card">
+                            <h4>Current UTC</h4>
+                            <div class="time-value-container">
+                                <p id="current-utc">Loading...</p>
+                                <button class="copy-btn" id="copy-current-utc-btn" title="Copy to clipboard">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="time-card">
+                            <h4>Current EST</h4>
+                            <div class="time-value-container">
+                                <p id="current-est">Loading...</p>
+                                <button class="copy-btn" id="copy-current-est-btn" title="Copy to clipboard">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>About UTC to EST Conversion</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Understanding the relationship between UTC and EST is crucial for international communication, travel planning, and global business operations.</p>
+                        <p>UTC (Coordinated Universal Time) is the primary time standard by which the world regulates clocks and time. EST (Eastern Standard Time) is used in the eastern part of North America and parts of the Caribbean.</p>
+                        <p>The conversion from UTC to EST involves subtracting 5 hours from UTC time. During Daylight Saving Time (EDT), the difference becomes 4 hours.</p>
+                        <h3>Why Convert UTC to EST?</h3>
+                        <ul>
+                            <li>Schedule international meetings and calls</li>
+                            <li>Plan travel between time zones</li>
+                            <li>Coordinate global events and broadcasts</li>
+                            <li>Manage remote teams across different regions</li>
+                        </ul>
+                    </div>
+                    <div class="time-zone-map">
+                        <svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 世界地图简化轮廓 -->
+                            <rect x="0" y="0" width="500" height="300" fill="#f7f1ff" rx="8" ry="8"/>
+                            
+                            <!-- 经线和纬线 -->
+                            <g stroke="#ddd" stroke-width="1">
+                                <!-- 经线 -->
+                                <line x1="50" y1="50" x2="50" y2="250" />
+                                <line x1="150" y1="50" x2="150" y2="250" />
+                                <line x1="250" y1="50" x2="250" y2="250" />
+                                <line x1="350" y1="50" x2="350" y2="250" />
+                                <line x1="450" y1="50" x2="450" y2="250" />
+                                
+                                <!-- 纬线 -->
+                                <line x1="50" y1="50" x2="450" y2="50" />
+                                <line x1="50" y1="150" x2="450" y2="150" />
+                                <line x1="50" y1="250" x2="450" y2="250" />
+                            </g>
+                            
+                            <!-- 简化的大陆轮廓 -->
+                            <path d="M100,100 C150,80 200,90 250,100 C300,110 350,100 400,120 C420,150 400,200 380,220 C320,240 250,230 200,220 C150,210 120,180 100,150 C90,130 90,120 100,100Z" fill="#e0d6ff" stroke="#8e44ad" stroke-width="2"/>
+                            
+                            <!-- UTC 区域标记 -->
+                            <circle cx="200" cy="150" r="25" fill="rgba(142, 68, 173, 0.2)" stroke="#8e44ad" stroke-width="2"/>
+                            <text x="200" y="155" font-family="Inter, sans-serif" font-size="12" text-anchor="middle" fill="#8e44ad" font-weight="bold">UTC</text>
+                            
+                            <!-- EST 区域标记 -->
+                            <circle cx="350" cy="150" r="25" fill="rgba(46, 204, 113, 0.2)" stroke="#2ecc71" stroke-width="2"/>
+                            <text x="350" y="155" font-family="Inter, sans-serif" font-size="12" text-anchor="middle" fill="#2ecc71" font-weight="bold">EST</text>
+                            
+                            <!-- 连接线 -->
+                            <line x1="225" y1="150" x2="325" y2="150" stroke="#8e44ad" stroke-width="2" stroke-dasharray="5,5"/>
+                            <text x="275" y="140" font-family="Inter, sans-serif" font-size="12" text-anchor="middle" fill="#8e44ad">-5h</text>
+                            
+                            <!-- 标题 -->
+                            <text x="250" y="30" font-family="Inter, sans-serif" font-size="16" text-anchor="middle" fill="#8e44ad" font-weight="bold">UTC to EST Time Zone Map</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2>Features of Our UTC to EST Converter</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⏱️</div>
+                        <h3>Instant Conversion</h3>
+                        <p>Convert UTC to EST time instantly with accurate results, updated in real-time.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Automatic DST Adjustment</h3>
+                        <p>Our converter automatically accounts for Daylight Saving Time changes in the EST zone.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Mobile Friendly</h3>
+                        <p>Access our UTC to EST converter on any device with a responsive, user-friendly interface.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>Global Accessibility</h3>
+                        <p>Available 24/7 from anywhere in the world for your time conversion needs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+            
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2>Frequently Asked Questions About UTC to EST</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <h3>What is the time difference between UTC and EST?</h3>
+                        <p>EST is 5 hours behind UTC (UTC-5). During Daylight Saving Time, when EST becomes EDT, it is 4 hours behind UTC (UTC-4).</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>When does EST change to EDT?</h3>
+                        <p>EST changes to EDT on the second Sunday in March at 2:00 AM local time, and returns to EST on the first Sunday in November at 2:00 AM local time.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Which countries and regions use EST?</h3>
+                        <p>EST is primarily used in parts of North America including eastern parts of the United States and Canada, as well as parts of the Caribbean and Central America.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How do I convert 12:00 UTC to EST?</h3>
+                        <p>To convert 12:00 UTC to EST, subtract 5 hours: 12:00 UTC - 5 hours = 07:00 EST. During Daylight Saving Time, subtract 4 hours instead: 12:00 UTC - 4 hours = 08:00 EDT.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Why is UTC used as a reference time?</h3>
+                        <p>UTC is used as a reference because it's a standardized time that doesn't change with seasons and is closely aligned with Greenwich Mean Time (GMT). It provides a consistent time standard for global coordination.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <p>Have questions about UTC to EST conversion or suggestions for our tool? We'd love to hear from you!</p>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Your email address">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Your message"></textarea>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>UTC to EST</h2>
+                    <p>Your reliable time zone conversion tool</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#converter">Converter</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Time Zone Guide</a></li>
+                            <li><a href="#">DST Calendar</a></li>
+                            <li><a href="#">World Clock</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 UTC to EST Converter. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
